@@ -5,15 +5,15 @@ router.get('/',(req,res)=>{
     res.send('We are on post');
 })
 
-router.get('/specific',(req,res)=>{
-    res.send('We are on specific');
+router.get('/specific/:name',(req,res)=>{
+    res.send(`${req.params.name} ${req.query.limit}`);
 })
 
 router.post('/',(req,res)=>{
     
     const post = new Post({
-        title:req.body.title,
-        description:req.body.description
+        title: req.body.title,
+        description: req.body.description
     });
     console.log(post)
 
@@ -23,8 +23,8 @@ router.post('/',(req,res)=>{
     })
     .catch(err => {
         res.json({message: err})
-    })
+    });
 
-})
+});
 
 module.exports = router;
